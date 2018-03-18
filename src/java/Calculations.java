@@ -86,6 +86,7 @@ public class Calculations {
             vector[i] = buf;
         }
     }
+    /*TODO complete universal vectorMerge method it's work, but can return false result for more then 2 threads*/
 
     public static void vectorMerge(int start, int end, int[] vector) {
         int size = end - start;
