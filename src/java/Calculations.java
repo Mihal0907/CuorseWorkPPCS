@@ -1,5 +1,6 @@
 import java.util.Arrays;
 
+
 public class Calculations {
 
     private static int n = Main.N;
@@ -47,20 +48,21 @@ public class Calculations {
         }
     }
 
-    public static void vectorNumMultiplication(int start, int end, int num, int[] vector, int[] resVector) {
+    public static void vectorNumMultiplication(int start, int end, int num, int[] vector) {
         for (int i = start; i < end; i++) {
-            resVector[i] = vector[i] * num;
+            vector[i] = vector[i] * num;
         }
     }
 
-    public static void vectorMatrixMultiplication(int start, int end, int[] vector, int[][] martix, int[] resVector) {
-        int buf;
+    public static void vectorMatrixMultiplication(int start, int end, int[] vector, int[][] matrix) {
+        int buf = 0;
         for (int i = start; i < end; i++) {
             buf = 0;
             for (int j = 0; j < n; j++) {
-                buf += vector[j] * martix[j][i];
+                buf += vector[i] * matrix[j][i];
             }
-            resVector[i] = buf;
+            vector[i] = buf;
+            buf = 0;
         }
     }
 
@@ -120,17 +122,15 @@ public class Calculations {
         System.arraycopy(bufVec, 0, vector, 0, size);
     }
 
-    public static void function(int start, int end, int[] B, int d, int e, int[] C, int[][] MO, int[][] MT, int[] result) {
-//        int size = end - start;
+    public static void function(int start, int end, int[] B, int d, int e
+                                , int[] C, int[][] MO, int[][] MT, int[] result) {
+
         int[][] MK = new int[n][n];
-        int[] D = new int[n];
-        int[] E = new int[n];
-        int[] F = new int[n];
 
         matrixMultiplication(start, end, MO, MT, MK);
-        vectorNumMultiplication(start, end, e, C, D);
-        vectorNumMultiplication(start, end, d, B, E);
-        vectorMatrixMultiplication(start, end, D, MK, F);
-        vectorAddition(start, end, E, F, result);
+        vectorNumMultiplication(start, end, e, C);
+        vectorNumMultiplication(start, end, d, B);
+        vectorMatrixMultiplication(start, end, C, MK);
+        vectorAddition(start, end, B ,C , result);
     }
 }
