@@ -1,9 +1,8 @@
-package courseWork._4Threads;
+package courseWork._8Threads;
 
-public class Main4 {
-
-    public static int N = 1000;
-    static int P = 4;
+public class Main8 {
+    public static int N = 4000;
+    static int P = 8;
     static int H = N / P;
 
     static int[] B = new int[N];
@@ -23,11 +22,19 @@ public class Main4 {
         T2 t2 = new T2("task 2");
         T3 t3 = new T3("task 3");
         T4 t4 = new T4("task 4");
+        T5 t5 = new T5("task 5");
+        T6 t6 = new T6("task 6");
+        T7 t7 = new T7("task 7");
+        T8 t8 = new T8("task 8");
 
         t1.start();
         t2.start();
         t3.start();
         t4.start();
+        t5.start();
+        t6.start();
+        t7.start();
+        t8.start();
 
         try {
             t2.join();
@@ -43,6 +50,30 @@ public class Main4 {
 
         try {
             t4.join();
+        } catch (InterruptedException e1) {
+            e1.printStackTrace();
+        }
+
+        try {
+            t5.join();
+        } catch (InterruptedException e1) {
+            e1.printStackTrace();
+        }
+
+        try {
+            t6.join();
+        } catch (InterruptedException e1) {
+            e1.printStackTrace();
+        }
+
+        try {
+            t7.join();
+        } catch (InterruptedException e1) {
+            e1.printStackTrace();
+        }
+
+        try {
+            t8.join();
         } catch (InterruptedException e1) {
             e1.printStackTrace();
         }

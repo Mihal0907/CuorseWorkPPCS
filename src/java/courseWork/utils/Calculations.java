@@ -2,13 +2,14 @@ package courseWork.utils;
 
 import courseWork._2Threads.Main2;
 import courseWork._4Threads.Main4;
+import courseWork._8Threads.Main8;
 
 import java.util.Arrays;
 
 
 public class Calculations {
 
-    public static int n = Main4.N;
+    public static int n = Main8.N;
 
     public static int[] vectorInput(int num) {
         int[] res = new int[n];
@@ -93,7 +94,6 @@ public class Calculations {
             vector[i] = buf;
         }
     }
-    /*TODO complete universal vectorMerge method it's work, but can return false result for more then 2 threads*/
 
     public static void vectorMerge(int start, int end, int[] vector) {
         int size = end - start;

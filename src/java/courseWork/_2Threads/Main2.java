@@ -40,7 +40,7 @@ public class Main2 {
         }
 
         long end = System.nanoTime();
-        System.out.println("Time = " + (end - start));
+        System.out.format("For N = %s and P = %s, time = %s(ns).", N, P, (end - start));
 
     }
 

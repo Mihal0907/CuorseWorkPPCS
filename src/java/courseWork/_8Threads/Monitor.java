@@ -1,12 +1,14 @@
-package courseWork._4Threads;
+package courseWork._8Threads;
+
 
 public class Monitor {
     private static int F1 = 0;
     private static int F2 = 0;
     private static int F3 = 0;
     private static int F4 = 0;
+    private static int F5 = 0;
 
-    private static int N = Main4.N;
+    private static int N = Main8.N;
 
     private int d;
     private int e;
@@ -70,12 +72,22 @@ public class Monitor {
 
     public synchronized void signalCalc(){
         F2++;
-        if (F2 == 4) notifyAll();
+        if (F2 == 8) notifyAll();
     }
 
     public synchronized void signalSort(){
         F3++;
-        if (F3 == 4) notifyAll();
+        if (F3 == 8) notifyAll();
+    }
+
+    public synchronized void signalMerge1(){
+        F4++;
+        if (F4 == 4) notifyAll();
+    }
+
+    public synchronized void signalMerge2(){
+        F5++;
+        if (F5 == 1) notifyAll();
     }
 
     public synchronized void waitInput(){
@@ -88,7 +100,7 @@ public class Monitor {
 
     public synchronized void waitCalc(){
         try{
-            while (F2 != 4) wait();
+            while (F2 != 8) wait();
         } catch (InterruptedException e1) {
             e1.printStackTrace();
         }
@@ -96,20 +108,23 @@ public class Monitor {
 
     public synchronized void waitSort(){
         try{
-            while (F3 != 4) wait();
+            while (F3 != 8) wait();
         } catch (InterruptedException e1) {
             e1.printStackTrace();
         }
     }
 
-    public synchronized void signalMerge(){
-        F4++;
-        if (F4 == 2) notifyAll();
+    public synchronized void waitMerge1(){
+        try{
+            while (F4 != 4) wait();
+        } catch (InterruptedException e1) {
+            e1.printStackTrace();
+        }
     }
 
-    public synchronized void waitMerge(){
+    public synchronized void waitMerge2(){
         try{
-            while (F4 != 2) wait();
+            while (F5 != 1) wait();
         } catch (InterruptedException e1) {
             e1.printStackTrace();
         }

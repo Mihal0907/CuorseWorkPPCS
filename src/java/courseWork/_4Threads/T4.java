@@ -38,6 +38,6 @@ public class T4 extends Thread {
         Calculations.vectorSort(start, end, Main4.A);
         Main4.monitor.signalSort();
 
-        System.out.println("T3 stop");
+        System.out.println("T4 stop");
     }
 }
