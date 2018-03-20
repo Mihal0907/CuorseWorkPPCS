@@ -1,9 +1,14 @@
+package courseWork.utils;
+
+import courseWork._2Threads.Main2;
+import courseWork._4Threads.Main4;
+
 import java.util.Arrays;
 
 
 public class Calculations {
 
-    private static int n = Main.N;
+    public static int n = Main4.N;
 
     public static int[] vectorInput(int num) {
         int[] res = new int[n];
@@ -14,7 +19,7 @@ public class Calculations {
     }
 
     public static void vectorOut(int[] vector) {
-        System.out.println(Arrays.toString(vector) + "\n");
+        System.out.println(Arrays.toString(vector));
     }
 
     public static int[][] matrixInput(int num) {
@@ -92,34 +97,46 @@ public class Calculations {
 
     public static void vectorMerge(int start, int end, int[] vector) {
         int size = end - start;
-        int index1 = start;
-        int index2 = size / 2;
+
+        int[] vectorRes = new int[size];
+        int[] bufVec = new int[size];
+
+        int k = 0;
+        for (int j = start; j < end; j++) {
+            vectorRes[k++] = vector[j];
+        }
+
         int i = 0;
-        int[] bufVec = new int[n];
+        int index1 = 0;
+        int index2 = size / 2;
 
         while (index1 <= size/2 - 1 && index2 <= size - 1) {
-            if (vector[index1] < vector[index2]) {
-                bufVec[i] = vector[index1];
+            if (vectorRes[index1] < vectorRes[index2]) {
+                bufVec[i] = vectorRes[index1];
                 index1++;
             } else {
-                bufVec[i] = vector[index2];
+                bufVec[i] = vectorRes[index2];
                 index2++;
             }
             i++;
         }
 
         while (index1 <= size / 2 - 1) {
-            bufVec[i] = vector[index1];
+            bufVec[i] = vectorRes[index1];
             index1++;
             i++;
         }
         while (index2 <= size - 1) {
-            bufVec[i] = vector[index2];
+            bufVec[i] = vectorRes[index2];
             index2++;
             i++;
         }
 
-        System.arraycopy(bufVec, 0, vector, 0, size);
+        int c = 0;
+
+        for (int j = start; j < end; j++) {
+            vector[j] = bufVec[c++];
+        }
     }
 
     public static void function(int start, int end, int[] B, int d, int e
